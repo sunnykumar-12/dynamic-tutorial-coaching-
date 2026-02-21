@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Tutorial · Class 5 to 10 Coaching</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #f9fafc;
+            color: #1e293b;
+            line-height: 1.6;
+            font-size: 18px;
+        }
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --accent: #f59e0b;
+            --light-bg: #f1f5f9;
+            --gray-text: #475569;
+            --white: #ffffff;
+            --shadow: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+            --card-shadow: 0 20px 40px -15px rgba(37,99,235,0.2);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        header {
+            background: var(--white);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(8px);
+            background: rgba(255,255,255,0.95);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            flex-wrap: wrap;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo img {
+            height: 95px;
+            width: auto;
+            border-radius: 10px;
+        }
+        .logo-text h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+        .logo-text span {
+            font-size: 1.1rem;
+            font-weight: 400;
+            display: block;
+            color: var(--gray-text);
+        }
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #334155;
+            transition: 0.2s;
+            font-size: 1.1rem;
+        }
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Notice Bar Styles */
+        .notice-bar {
+            background: var(--accent);
+            color: white;
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 2px solid var(--primary);
+            position: relative;
+            z-index: 99;
+        }
+        .notice-bar i {
+            font-size: 1.8rem;
+            margin-left: 20px;
+            flex-shrink: 0;
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
+        }
+        .notice-content {
+            overflow: hidden;
+            width: 100%;
+        }
+        .notice-text {
+            display: inline-block;
+            animation: scrollNotice 25s linear infinite;
+            font-size: 1.2rem;
+            font-weight: 500;
+            padding-left: 100%;
+        }
+        @keyframes scrollNotice {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .hero {
+            padding: 5rem 0 6rem;
+            background: linear-gradient(145deg, #eef2ff 0%, #ffffff 100%);
+        }
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .hero-text {
+            flex: 1 1 350px;
+        }
+        .hero-text h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        .hero-text h1 span {
+            color: var(--primary);
+            border-bottom: 4px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+        .hero-text p {
+            font-size: 1.3rem;
+            color: var(--gray-text);
+            max-width: 550px;
+            margin-bottom: 2rem;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 40px;
+            font-weight: 500;
+            text-decoration: none;
+            box-shadow: 0 8px 18px rgba(37,99,235,0.2);
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(37,99,235,0.3);
+        }
+        .hero-image {
+            flex: 1 1 350px;
+            text-align: center;
+        }
+        .hero-image i {
+            font-size: 14rem;
+            color: #dbeafe;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #0f172a;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-text);
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            font-size: 1.2rem;
+        }
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        .course-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            transition: 0.25s ease;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.02);
+        }
+        .course-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 35px -12px rgba(37,99,235,0.15);
+        }
+        .course-icon {
+            font-size: 3.2rem;
+            color: var(--primary);
+            margin-bottom: 1.2rem;
+        }
+        .course-card h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        .course-card p {
+            color: var(--gray-text);
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        .badge {
+            background: var(--light-bg);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+        .about {
+            background: var(--light-bg);
+            padding: 5rem 0;
+            margin: 2rem 0;
+        }
+        .about-flex {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+        .about-text {
+            flex: 2 1 350px;
+        }
+        .about-text h3 {
+            font-size: 2.3rem;
+            margin-bottom: 1.5rem;
+            color: #0f172a;
+        }
+        .about-text p {
+            margin-bottom: 1rem;
+            color: #334155;
+            font-size: 1.2rem;
+        }
+        .about-highlight {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .highlight-item {
+            text-align: center;
+        }
+        .highlight-item i {
+            font-size: 3rem;
+            color: var(--accent);
+        }
+        .highlight-item h4 {
+            font-size: 2rem;
+        }
+        .highlight-item p {
+            font-size: 1.1rem;
+        }
+        .about-image {
+            flex: 1 1 250px;
+            text-align: center;
+        }
+        .about-image i {
+            font-size: 12rem;
+            color: #b9d3f8;
+        }
+        .mentor-section {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
+        }
+        .mentor-card {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 48px;
+            padding: 3.5rem;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            border: 1px solid rgba(37,99,235,0.1);
+        }
+        .mentor-image {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid var(--primary);
+            box-shadow: 0 15px 30px rgba(37,99,235,0.2);
+        }
+        .mentor-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .mentor-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        .mentor-info h3 {
+            font-size: 2.5rem;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+        .mentor-info .designation {
+            color: var(--primary);
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            background: #dbeafe;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+        }
+        .mentor-contact {
+            margin: 1.5rem 0;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .contact-item i {
+            width: 30px;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        .contact-item a {
+            color: #334155;
+            text-decoration: none;
+            transition: 0.2s;
+            font-size: 1.2rem;
+        }
+        .contact-item a:hover {
+            color: var(--primary);
+        }
+        .mentor-badge {
+            background: linear-gradient(135deg, #f59e0b, #fbbf24);
+            color: white;
+            padding: 0.7rem 2rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 500;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+        .resources {
+            padding: 5rem 0;
+        }
+        .resource-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .resource-item {
+            background: var(--white);
+            border-radius: 28px;
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            transition: 0.2s;
+            border-left: 6px solid var(--primary);
+        }
+        .resource-item:hover {
+            transform: translateY(-5px);
+        }
+        .resource-item i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .resource-item h4 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .resource-item ul {
+            list-style: none;
+        }
+        .resource-item li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.1rem;
+        }
+        .resource-item li i {
+            font-size: 1rem;
+            color: var(--accent);
+            margin: 0;
+        }
+        .modern-study-materials {
+            padding: 5rem 0;
+            background: #ffffff;
+        }
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        .class-card {
+            background: linear-gradient(145deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 2.5rem 1.5rem;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(37,99,235,0.3);
+            transition: transform 0.3s;
+            text-decoration: none;
+            display: block;
+        }
+        .class-card:hover {
+            transform: translateY(-10px);
+        }
+        .class-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .class-card h3 {
+            font-size: 2rem;
+            margin: 0;
+        }
+        .class-5 { background: linear-gradient(145deg, #2563eb, #1d4ed8); }
+        .class-6 { background: linear-gradient(145deg, #7c3aed, #6d28d9); }
+        .class-7 { background: linear-gradient(145deg, #db2777, #be185d); }
+        .class-8 { background: linear-gradient(145deg, #ea580c, #c2410c); }
+        .class-9 { background: linear-gradient(145deg, #16a34a, #15803d); }
+        .class-10 { background: linear-gradient(145deg, #b45309, #92400e); }
+        .contact {
+            padding: 5rem 0;
+        }
+        .contact-container {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .contact-info {
+            flex: 1 1 280px;
+        }
+        .info-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            align-items: center;
+        }
+        .info-item i {
+            font-size: 2.2rem;
+            color: var(--primary);
+            width: 50px;
+        }
+        .info-item h4 {
+            font-size: 1.4rem;
+        }
+        .info-item p {
+            font-size: 1.2rem;
+        }
+        .contact-form {
+            flex: 2 1 380px;
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 32px;
+            box-shadow: var(--shadow);
+        }
+        .contact-form h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 1.2rem 1.5rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 36px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: 0.2s;
+        }
+        textarea {
+            border-radius: 28px;
+            resize: vertical;
+        }
+        input:focus, textarea:focus {
+            border-color: var(--primary);
+        }
+        .btn-submit {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            border-radius: 40px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+        .btn-submit:hover {
+            background: var(--primary-dark);
+        }
+        footer {
+            background: #0b1120;
+            color: #94a3b8;
+            padding: 4rem 0 2rem;
+            border-radius: 48px 48px 0 0;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .footer-logo h3 {
+            color: white;
+            font-size: 2rem;
+        }
+        .footer-logo p {
+            font-size: 1.1rem;
+        }
+        .social a {
+            color: #cbd5e1;
+            font-size: 2rem;
+            margin-left: 1.5rem;
+            transition: 0.2s;
+        }
+        .social a:hover {
+            color: var(--primary);
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 1rem;
+            border-top: 1px solid #1e293b;
+            padding-top: 2rem;
+        }
+        .developer {
+            color: #f59e0b;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.5rem 0;
+            }
+            .nav-links.show {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            .hero-text p {
+                font-size: 1.1rem;
+            }
+            .hero-image i {
+                font-size: 10rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .about-flex {
+                gap: 2rem;
+            }
+            .mentor-card {
+                padding: 2rem;
+                text-align: center;
+            }
+            .mentor-info {
+                text-align: center;
+            }
+            .contact-item {
+                justify-content: center;
+            }
+            .class-card {
+                padding: 1.5rem 1rem;
+            }
+            .class-card h3 {
+                font-size: 1.5rem;
+            }
+            /* Notice Bar Mobile */
+            .notice-bar i {
+                font-size: 1.2rem;
+                margin-left: 10px;
+            }
+            .notice-text {
+                font-size: 1rem;
+                animation-duration: 18s;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <img src="logo.jpg" alt="Dynamic Tutorial Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="logo-text" style="display: none;">
+                    <h2>Dynamic Tutorial</h2>
+                    <span>Class 5 to 10 · Coaching Center</span>
+                </div>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#mentor">Mentor</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- 🔔 Scrolling Notice Bar -->
+    <div class="notice-bar">
+        <i class="fas fa-bullhorn"></i>
+        <div class="notice-content">
+            <span class="notice-text">
+                🔥 New Batch Starting Soon! Enroll Now for Class 5-10. Limited Seats! &nbsp;&nbsp;&nbsp; 
+                📢 Summer Batch from April 1st. Get 20% Early Bird Discount! &nbsp;&nbsp;&nbsp; 
+                🎯 Special Weekend Batches Available. &nbsp;&nbsp;&nbsp; 
+                ⭐ Admission Open for 2026-27 Session. Contact for Demo Class!
+            </span>
+        </div>
+    </div>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1>Strong Foundation <span>Bright Future</span></h1>
+                    <p>Expert guidance in Mathematics, Science, Social Studies, and English. Small batches, personal attention.</p>
+                    <a href="#contact" class="btn">Book Free Trial Class <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="hero-image">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container about-flex">
+                <div class="about-text">
+                    <h3>Dynamic Tutorial Coaching Center</h3>
+                    <p>We have been providing quality education to students from class 5 to 10 for the past 5 years. Our goal is to explain concepts in depth and prepare students for excellent performance in exams.</p>
+                    <p>Our experienced teachers pay individual attention to every child, with regular assessments and parent-teacher meetings.</p>
+                    <div class="about-highlight">
+                        <div class="highlight-item">
+                            <i class="fas fa-user-graduate"></i>
+                            <h4>500+</h4>
+                            <p>Students Trained</p>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>95%</h4>
+                            <p>Success Rate</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <i class="fas fa-school"></i>
+                </div>
+            </div>
+        </section>
+
+        <section id="courses" class="container">
+            <h2 class="section-title">Our Classes & Subjects</h2>
+            <p class="section-subtitle">Coaching for all main subjects from class 5 to 10 — Mathematics, Science, Social Studies, English, Hindi, Sanskrit.</p>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-calculator"></i></div>
+                    <h3>Mathematics</h3>
+                    <p>From basics to advanced, with formulas and tricks.</p>
+                    <span class="badge">Class 5-10</span>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-flask"></i></div>
+                    <h3>Science</h3>
+                    <p>Physics, Chemistry, Biology with practical knowledge.</p>
+                    <span class="badge">Class 6-10</span>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-globe-asia"></i></div>
+                    <h3>Social Studies</h3>
+                    <p>History, Geography, Political Science in simple language.</p>
+                    <span class="badge">Class 6-10</span>
+                </div>
+                <div class="course-card">
+                    <div class="course-icon"><i class="fas fa-language"></i></div>
+                    <h3>English & Hindi</h3>
+                    <p>Strong grasp of grammar, writing, literature.</p>
+                    <span class="badge">Class 5-10</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="modern-study-materials">
+            <div class="container">
+                <h2 class="section-title">🎓 Our Study Materials</h2>
+                <p class="section-subtitle">Notes, previous years' question papers, and important PDFs for all classes</p>
+
+                <div class="class-grid">
+                    <!-- Class 5 - Replace with actual folder IDs -->
+                    <a href="https://drive.google.com/drive/folders/1sDeoI-wAuwBObTnC_cdT3KMsWl_jxCfD" target="_blank" class="class-card class-5">
+                        <i class="fas fa-book-open"></i>
+                        <h3>Class 5</h3>
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1sDeoI-wAuwBObTnC_cdT3KMsWl_jxCfD" target="_blank" class="class-card class-6">
+                        <i class="fas fa-book-open"></i>
+                        <h3>Class 6</h3>
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1sDeoI-wAuwBObTnC_cdT3KMsWl_jxCfD" target="_blank" class="class-card class-7">
+                        <i class="fas fa-flask"></i>
+                        <h3>Class 7</h3>
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1sDeoI-wAuwBObTnC_cdT3KMsWl_jxCfD" target="_blank" class="class-card class-8">
+                        <i class="fas fa-calculator"></i>
+                        <h3>Class 8</h3>
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1sDeoI-wAuwBObTnC_cdT3KMsWl_jxCfD" target="_blank" class="class-card class-9">
+                        <i class="fas fa-dna"></i>
+                        <h3>Class 9</h3>
+                    </a>
+                    <a href="https://drive.google.com/drive/folders/1sDeoI-wAuwBObTnC_cdT3KMsWl_jxCfD" target="_blank" class="class-card class-10">
+                        <i class="fas fa-scroll"></i>
+                        <h3>Class 10</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="resources" style="background: #f8fafc;">
+            <div class="container">
+                <h2 class="section-title">Study Resources</h2>
+                <p class="section-subtitle">Notes, previous year question papers, books and more available for our students.</p>
+                <div class="resource-cards">
+                    <div class="resource-item">
+                        <i class="fas fa-file-alt"></i>
+                        <h4>Course Notes</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Subject-wise concise notes</li>
+                            <li><i class="fas fa-check-circle"></i> Class work handouts</li>
+                            <li><i class="fas fa-check-circle"></i> Important questions</li>
+                        </ul>
+                    </div>
+                    <div class="resource-item">
+                        <i class="fas fa-history"></i>
+                        <h4>Previous Question Papers</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Board papers of last 10 years</li>
+                            <li><i class="fas fa-check-circle"></i> Solved examples</li>
+                            <li><i class="fas fa-check-circle"></i> Practice booklets</li>
+                        </ul>
+                    </div>
+                    <div class="resource-item">
+                        <i class="fas fa-book-open"></i>
+                        <h4>Books & References</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> NCERT solutions</li>
+                            <li><i class="fas fa-check-circle"></i> Additional practice books</li>
+                            <li><i class="fas fa-check-circle"></i> Competitive exam material</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="mentor" class="mentor-section">
+            <div class="container">
+                <h2 class="section-title">Our Mentor</h2>
+                <p class="section-subtitle">Experienced teacher ensuring your success</p>
+                
+                <div class="mentor-card">
+                    <div class="mentor-image">
+                        <img src="anand-sir.jpeg" alt="Anand Sir" onerror="this.src='https://via.placeholder.com/200x200?text=Anand+Sir'">
+                    </div>
+                    <div class="mentor-info">
+                        <h3>Anand Sir</h3>
+                        <span class="designation">Senior Teacher & Mentor</span>
+                        <div class="mentor-contact">
+                            <div class="contact-item">
+                                <i class="fas fa-phone-alt"></i>
+                                <a href="tel:+919954440630">+91 99544 40630</a>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <a href="mailto:dynamictutorial4@gmail.com">dynamictutorial4@gmail.com</a>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>M.A, M.Ed - 4+ years experience</span>
+                            </div>
+                        </div>
+                        <div class="mentor-badge">
+                            <i class="fas fa-star"></i> Expert - Mathematics & Science
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section with Formspree -->
+        <section id="contact" class="contact">
+            <div class="container contact-container">
+                <div class="contact-info">
+                    <h2 class="section-title" style="text-align: left;">Contact Us</h2>
+                    <p style="margin-bottom: 2rem; color: #475569; font-size: 1.2rem;">Get in touch and start your learning journey.</p>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>Jhingaha Chwok Beside the Urdu School 843111</p>
+                        </div>
+                    </div>
+                    <div class="info-item"> 
+                        <i class="fas fa-phone-alt"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+91 99544 40630</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>dynamictutorial4@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Feedback & Queries</h3>
+                    <!-- Formspree form - working -->
+                    <form action="https://formspree.io/f/xeelrabd" method="POST">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="phone" placeholder="Phone Number">
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" rows="4" placeholder="Your Message..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Submit <i class="fas fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3>Dynamic Tutorial</h3>
+                    <p>Class 5-10 Coaching Center</p>
+                </div>
+                <div class="social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© 2026 Dynamic Tutorial Coaching Center. All Rights Reserved.</p>
+                <p style="margin-top: 10px;">Website Developer: <span class="developer">Sunny Kumar, MSC Computer Science</span> <i class="fas fa-heart" style="color: #f43f5e;"></i></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const toggle = document.getElementById('menu-toggle');
+        const nav = document.getElementById('nav-links');
+        toggle.addEventListener('click', () => {
+            nav.classList.toggle('show');
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if(nav.classList.contains('show')) nav.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
