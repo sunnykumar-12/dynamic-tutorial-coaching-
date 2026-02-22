@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="google-site-verification" content="ZJ5ulEJwe5A4QCZS9WHZ3cHpBTAMcOOoPUn_Km_YlkA" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dynamic Tutorial · Class 5 to 10 Coaching</title>
     <!-- Font Awesome -->
@@ -299,15 +300,16 @@
             font-size: 12rem;
             color: #b9d3f8;
         }
+        /* Mentor Section Enhanced Card */
         .mentor-section {
             padding: 5rem 0;
             background: linear-gradient(135deg, #f0f4ff 0%, #ffffff 100%);
         }
         .mentor-card {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: var(--white);
-            border-radius: 48px;
+            border-radius: 60px;
             padding: 3.5rem;
             box-shadow: var(--card-shadow);
             display: flex;
@@ -315,15 +317,31 @@
             align-items: center;
             flex-wrap: wrap;
             justify-content: center;
-            border: 1px solid rgba(37,99,235,0.1);
+            border: 1px solid rgba(37, 99, 235, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        .mentor-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
         }
         .mentor-image {
-            width: 250px;
-            height: 250px;
+            width: 280px;
+            height: 280px;
             border-radius: 50%;
             overflow: hidden;
             border: 5px solid var(--primary);
-            box-shadow: 0 15px 30px rgba(37,99,235,0.2);
+            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
+            transition: transform 0.3s;
+            flex-shrink: 0;
+        }
+        .mentor-image:hover {
+            transform: scale(1.02);
         }
         .mentor-image img {
             width: 100%;
@@ -332,46 +350,90 @@
         }
         .mentor-info {
             flex: 1;
-            min-width: 300px;
+            min-width: 320px;
+            text-align: left;
         }
         .mentor-info h3 {
             font-size: 2.5rem;
             color: #0f172a;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
+            font-weight: 700;
         }
         .mentor-info .designation {
             color: var(--primary);
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 500;
             margin-bottom: 1.5rem;
             display: inline-block;
             background: #dbeafe;
-            padding: 0.5rem 1.5rem;
+            padding: 0.4rem 1.5rem;
             border-radius: 40px;
+            letter-spacing: 0.5px;
         }
         .mentor-contact {
-            margin: 1.5rem 0;
+            margin: 1.8rem 0;
         }
         .contact-item {
             display: flex;
             align-items: center;
             gap: 1rem;
             margin-bottom: 1rem;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            transition: 0.2s;
+        }
+        .contact-item:hover {
+            background: #eef2ff;
+            transform: translateX(5px);
         }
         .contact-item i {
             width: 30px;
             color: var(--primary);
-            font-size: 1.5rem;
+            font-size: 1.3rem;
+            text-align: center;
         }
-        .contact-item a {
+        .contact-item a, .contact-item span {
             color: #334155;
             text-decoration: none;
-            transition: 0.2s;
-            font-size: 1.2rem;
+            font-weight: 500;
         }
         .contact-item a:hover {
             color: var(--primary);
+        }
+        /* Social Links Styling */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin: 25px 0;
+        }
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .social-icon.facebook {
+            background: #1877f2;
+            color: white;
+        }
+        .social-icon.youtube {
+            background: #ff0000;
+            color: white;
+        }
+        .social-icon.instagram {
+            background: linear-gradient(45deg, #f09433, #d62976, #962fbf, #4f5bd5);
+            color: white;
+        }
+        .social-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         .mentor-badge {
             background: linear-gradient(135deg, #f59e0b, #fbbf24);
@@ -379,9 +441,12 @@
             padding: 0.7rem 2rem;
             border-radius: 40px;
             display: inline-block;
-            font-weight: 500;
-            margin-top: 1rem;
-            font-size: 1.2rem;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.3);
+        }
+        .mentor-badge i {
+            margin-right: 8px;
         }
         .resources {
             padding: 5rem 0;
@@ -619,6 +684,13 @@
             .mentor-info {
                 text-align: center;
             }
+            .mentor-image {
+                width: 220px;
+                height: 220px;
+            }
+            .social-links {
+                justify-content: center;
+            }
             .contact-item {
                 justify-content: center;
             }
@@ -669,10 +741,13 @@
         <i class="fas fa-bullhorn"></i>
         <div class="notice-content">
             <span class="notice-text">
-                🔥 New Batch Starting Soon! Enroll Now for Class 5-10. Limited Seats! &nbsp;&nbsp;&nbsp; 
-                📢 Summer Batch from April 1st. Get 20% Early Bird Discount! &nbsp;&nbsp;&nbsp; 
-                🎯 Special Weekend Batches Available. &nbsp;&nbsp;&nbsp; 
-                ⭐ Admission Open for 2026-27 Session. Contact for Demo Class!
+                🔥 Admissions Open for the Academic Year 
+                Secure your seat today — limited seats available!
+                🔥 New Batch Starting Soon
+            📢 Demo Classes Available (Offline)
+            Visit our offline center for a demo session and experience quality teaching firsthand.
+            ⭐ Contact for Demo & Admissions:
+            📞 +91 99544 40630
             </span>
         </div>
     </div>
@@ -818,6 +893,7 @@
             </div>
         </section>
 
+        <!-- Mentor Section with Social Links -->
         <section id="mentor" class="mentor-section">
             <div class="container">
                 <h2 class="section-title">Our Mentor</h2>
@@ -825,7 +901,7 @@
                 
                 <div class="mentor-card">
                     <div class="mentor-image">
-                        <img src="anand-sir.jpeg" alt="Anand Sir" onerror="this.src='https://via.placeholder.com/200x200?text=Anand+Sir'">
+                        <img src="anand-sir.jpeg" alt="Anand Sir" onerror="this.src='https://via.placeholder.com/280x280?text=Anand+Sir'">
                     </div>
                     <div class="mentor-info">
                         <h3>Anand Sir</h3>
@@ -843,6 +919,12 @@
                                 <i class="fas fa-graduation-cap"></i>
                                 <span>M.A, M.Ed - 4+ years experience</span>
                             </div>
+                        </div>
+                        <!-- Social Links for Anand Sir -->
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/share/1ZDvtuWnR8/" target="_blank" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://m.youtube.com/channel/UCqPs2OVPOqc1BoA70kcEieA?fbclid=PAb21jcAQHebtleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacyaasr8NIdYD91BYk1JXRijl5U0CEORXW7hC_detGbpubxuIVp9U2Rc24RSQ_aem_KZ7xO-1H629F1SyEN0g2OA" target="_blank" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                            <a href="https://www.instagram.com/dt_anand?igsh=MXNuYzAwNDdqazN4eA==" target="_blank" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
                         </div>
                         <div class="mentor-badge">
                             <i class="fas fa-star"></i> Expert - Mathematics & Science
@@ -862,7 +944,7 @@
                         <i class="fas fa-map-marker-alt"></i>
                         <div>
                             <h4>Address</h4>
-                            <p>Jhingaha Chwok Beside the Urdu School 843111</p>
+                            <p>Jhingaha Chwok, Beside Urdu School, 843111</p>
                         </div>
                     </div>
                     <div class="info-item"> 
@@ -882,7 +964,6 @@
                 </div>
                 <div class="contact-form">
                     <h3>Feedback & Queries</h3>
-                    <!-- Formspree form - working -->
                     <form action="https://formspree.io/f/xeelrabd" method="POST">
                         <div class="form-group">
                             <input type="text" name="name" placeholder="Your Name" required>
@@ -903,22 +984,67 @@
         </section>
     </main>
 
-    <footer>
+    <!-- Footer - Professional Design (Contact Info Removed) -->
+    <footer style="background: #0b1120; color: #94a3b8; padding: 3rem 0 1.5rem; border-radius: 48px 48px 0 0;">
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <h3>Dynamic Tutorial</h3>
-                    <p>Class 5-10 Coaching Center</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 40px;">
+                <!-- Logo Section -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+                        <img src="logo.jpg" alt="Dynamic Tutorial" style="height: 40px; width: auto; border-radius: 8px;">
+                        <h3 style="color: white; font-size: 1.3rem;">Dynamic Tutorial</h3>
+                    </div>
+                    <p style="font-size: 0.95rem; line-height: 1.6;">Quality education for Class 5 to 10. Building strong foundations for bright futures.</p>
                 </div>
-                <div class="social">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 style="color: white; font-size: 1.1rem; margin-bottom: 20px;">Quick Links</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 10px;"><a href="#home" style="color: #94a3b8; text-decoration: none;">Home</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#about" style="color: #94a3b8; text-decoration: none;">About</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#courses" style="color: #94a3b8; text-decoration: none;">Courses</a></li>
+                        <li style="margin-bottom: 10px;"><a href="#contact" style="color: #94a3b8; text-decoration: none;">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Developer Info with Social Links -->
+                <div>
+                    <h4 style="color: white; font-size: 1.1rem; margin-bottom: 20px;">👨‍💻 Developer</h4>
+                    <p style="margin-bottom: 5px; color: #94a3b8;">Sunny Kumar</p>
+                    <p style="margin-bottom: 15px; color: #94a3b8; font-size: 0.9rem;">MSC Computer Science</p>
+                    <div style="display: flex; gap: 15px;">
+                        <a href="https://www.instagram.com/i_am_skr_26" target="_blank" style="color: #94a3b8; font-size: 1.3rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/sunnykumarranjan.sunny.71" target="_blank" style="color: #94a3b8; font-size: 1.3rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.linkedin.com/in/sunny-kumar-652b08319" target="_blank" style="color: #94a3b8; font-size: 1.3rem;"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+
+                <!-- Social & Visitor Counter -->
+                <div>
+                    <h4 style="color: white; font-size: 1.1rem; margin-bottom: 20px;">Follow Us</h4>
+                    <div style="display: flex; gap: 15px; margin-bottom: 20px;">
+                        <a href="https://www.facebook.com/share/1ZDvtuWnR8/" target="_blank" style="color: #94a3b8; font-size: 1.5rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/dt_anand?igsh=MXNuYzAwNDdqazN4eA==" target="_blank" style="color: #94a3b8; font-size: 1.5rem;"><i class="fab fa-instagram"></i></a>
+                        <a href="https://m.youtube.com/channel/UCqPs2OVPOqc1BoA70kcEieA" target="_blank" style="color: #94a3b8; font-size: 1.5rem;"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div style="background: #1e293b; padding: 12px; border-radius: 10px;">
+                        <p style="color: white; font-size: 0.9rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-eye" style="color: #f59e0b;"></i>
+                            <span>Visitors:</span>
+                            <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fsunnykumar-12.github.io%2Fdynamic-tutorial-coaching-%2F&label=&icon=eye&color=%23198754&message=&style=flat&tz=UTC" style="height: 20px;">
+                        </p>
+                    </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>© 2026 Dynamic Tutorial Coaching Center. All Rights Reserved.</p>
-                <p style="margin-top: 10px;">Website Developer: <span class="developer">Sunny Kumar, MSC Computer Science</span> <i class="fas fa-heart" style="color: #f43f5e;"></i></p>
+
+            <!-- Copyright -->
+            <div style="border-top: 1px solid #1e293b; padding-top: 25px; text-align: center;">
+                <p style="font-size: 0.9rem;">© 2026 Dynamic Tutorial Coaching Center. All Rights Reserved.</p>
+                <p style="margin-top: 8px; font-size: 0.85rem; color: #64748b;">
+                    Website Developer: <span style="color: #f59e0b; font-weight: 500;">Sunny Kumar, (MSC Computer Science)</span> 
+                    <i class="fas fa-heart" style="color: #f43f5e; margin-left: 5px;"></i>
+                </p>
             </div>
         </div>
     </footer>
